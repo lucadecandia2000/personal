@@ -49,7 +49,7 @@ void request() {
     }
     if (elevator_free) {
 
-        floor_requested = make_proper_request(elevator_floor); // this funcion is not actually implemented and it makes a request from a floor different from the one where the elevator is currently 
+        floor_requested = make_proper_request(floor); // this funcion is not actually implemented and it makes a request from a floor different from the one where the elevator is currently 
         request_from = make_proper_request(floor_requested);
 
         cout << "Requested floor " <<floor_requested << " from floor " << request_from << endl;
@@ -79,11 +79,11 @@ void elevator() {
             this_thread::sleep_for(std::chrono::seconds(2)); // given time to serve a request ; 
         }
 
-        cout << ">> SERVING PERSON >> Elevator going from floor " << elevator_floor << " to floor " << floor_requested << endl;
+        cout << ">> SERVING PERSON >> Elevator going from floor " << floor << " to floor " << floor_requested << endl;
         floor = floor_requested; // we get to the wanted floor ; 
         this_thread::sleep_for (std::chrono::seconds(2));
         elevator_free=true; // re-set the elevator to free , as in ready to recieve new requests ; 
-        cv.wait(e_lock); // go in wait state for new requests, releasing the lock ; 
+        cv.wait(lock); // go in wait state for new requests, releasing the lock ; 
     }
 
 }
