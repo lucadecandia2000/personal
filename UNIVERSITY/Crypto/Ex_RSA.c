@@ -72,7 +72,6 @@ int main() {
     if(!EVP_CipherInit(ctx, EVP_aes_128_cbc(), key, iv, ENCRYPT)) { // init it to use aes_128_cbc() ;   
         handle_errors() ; 
     }
-
     unsigned char ciphertext[MAX_ENC_LEN]; // create a space for the ciphertext 
 
     int update_len, final_len; // to be used during the enc
