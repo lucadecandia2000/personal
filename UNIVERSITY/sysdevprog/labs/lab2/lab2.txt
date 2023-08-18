@@ -1,0 +1,131 @@
+System and Device Programming
+Laboratory number 02 (System and Programming part)
+
+
+
+Learning goals
+--------------
+
+Review laboratory: Operating system basics (i.e., threads) and C++ basics.
+
+ 
+
+Exercise 01
+Code implementation with threads
+(a variant of exercise 04 of laib 01, but with threads)
+-------------------------------------------------------
+
+Implement a C program, thread_generation, that receives a command line parameter
+n.
+The parent thread creates two threads and waits for their termination.
+Each further thread creates the other two threads, awaiting their termination. 
+Tread creation stops after 2^n threads have been created, i.e., the ones that stand
+on the leaves of a tree with 2^n leaves.
+
+For example, if n=3
+- the main thread creates two threads
+- each one of these 2 threads creates two other threads
+- each one of these 4 threads creates two other threads
+at this point, 8 leaf treads are running and the program must stop.
+
+Each leaf thread must print its generation tree, i.e., the sequence of thread
+identifiers from the main thread (the tree root) to the leaf thread (the tree leaf).
+
+The following is an example of the program execution: 
+
+quer@quer-VirtualBox:~/current/sdp$ ./l01e05 3
+140051327870720 140051311085312 140051224717056 
+140051327870720 140051311085312 140051224717056 
+140051327870720 140051311085312 140051233109760 
+140051327870720 140051319478016 140051207931648 
+140051327870720 140051311085312 140051233109760 
+140051327870720 140051319478016 140051207931648 
+140051327870720 140051319478016 140051216324352 
+140051327870720 140051319478016 140051216324352 
+
+where the nubers are the thread identifiers displayed as long integer values.
+
+Suggestion
+----------
+Instead of printing (and storing) thread identifiers (tids) as "long integer" values,
+you can store and display "user thread indentifier", e.g., integer number given by the
+user to each thread.
+
+
+
+Exercise 02
+Code implementation with threads
+--------------------------------
+
+In linear algebra, the multiplication of matrices is the operation that
+produces a new matrix C by making the product rows for columns of two
+given matrices A and B.
+More in detail, if A has size [r, x] and B has size [x, c], then C will
+have size [r, c], and each of its position elements (i, j) will be
+computed as:
+
+C[i][j] = \sum_{k=0}^{x-1} A[i][k] x B[k][j]
+
+Write a multithreaded function:
+
+void mat_mul (int **A, int **B, int r, int x, int c, int **C);
+
+able to generate the matrix C, running a thread to compute
+each one of its elements.
+Each thread will calculate the value of the element, making the product
+rows by columns previously specified.
+Properly define the data structure required to run the threads.
+
+
+
+Exercise 03
+C++ Basics plus sequential containers
+-------------------------------------
+
+A stack is a LIFO (Last-In First-out) structure in which
+the last inserted element is the first to be extracted.
+Although the C++ library includes a stack container, implement
+your version of a stack allowing the insertion (push) and
+extraction (pop) of integer values.
+The stack must deliver the following methods:
+
+- push, to insert a new integer into the stack
+- pop, to extract the last integer that has been inserted into
+  the stack
+- visit, to display all elements contained by the stack
+- getSize, which returns the number of integers in the stack
+- empty, which returns true if the stack is empty.
+
+Suggestion
+----------
+Use a
+vector<int>
+to implement the stack.
+
+
+
+Exercise 04
+C++ Basics plus sequential containers
+-------------------------------------
+
+A queue is a FIFO (First-In First-out) structure in which
+the first inserted element is the first to be extracted.
+Although the C++ library includes a queue containers, implement
+your version of a queue allowing the insertion (enqueue) and
+extraction (dequeue) of strings.
+The queue must deliver the following methods:
+
+- enqueue, to insert a new string into the queue
+- dequeue, to extract the last string that has been inserted into the
+  queue
+- visit, to display all elements contained by the queue
+- getSize, which returns the number of strings in the queue
+- empty, which returns true if the queue is empty.
+
+Suggestion
+----------
+Use a
+list<string>
+or
+dueue<string>
+to implement the queue.
