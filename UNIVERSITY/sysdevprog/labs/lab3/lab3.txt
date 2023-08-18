@@ -1,0 +1,108 @@
+System and Device Programming
+Laboratory number 03 (System and Programming part)
+
+
+
+Learning goals
+--------------
+
+Review laboratory: C++ libraries, i.e., IO, containers, templates.
+
+ 
+
+Exercise 01
+C++ Sequential containers and templates
+---------------------------------------
+
+Adjust the stack and the queue programs written during laboratory number 2 to:
+- Use templates
+- Use both libraries together in the same programs.
+Check whether it is possible to insert different data types in both containers from
+the same client program.
+
+
+
+Exercise 2
+Leaderboard using standard sets
+-------------------------------
+
+A "leaderboard" displays the names and current scores of the leading competitors
+in a tournament.
+Implement a leaderboard using standard sets.
+
+A name identifies each player and has a score associated with them.
+It should be possible to add or remove players from the leaderboard and update
+existing players' scores.
+It should also be possible to display the top n players on the leaderboard, where
+n is a positive integer value.
+
+More specifically, the program should:
+
+* Define a structure player (named Player) to hold a player's name and score.
+
+* Define a custom comparison function or operator to order the player objects in
+  the standard set based on their score.
+
+* Implement a class to manage the leaderboard (Leaderboard).
+  The class should have the following public methods:
+
+  - void addPlayer(const std::string& name, int score)
+    which adds a new player with the given name and score to the leaderboard.
+    Suppose that names are unique.
+
+  - void removePlayer(const std::string& name)
+    which removes the player with the given name from the leaderboard.
+
+  - void updateScore(const std::string& name, int newScore)
+    which updates the player's score with the given name to the new score
+
+  - void printTopPlayers(int n)
+    which displays the names and scores of the top n players on the leaderboard (e.g,
+    the standard output or a file).
+    The players must be ordered by the score in descending order.
+    In case ex aequo among players, define a possible order among them (e.g., based on
+    the name or the insertion order in the laderboard).
+    Display all players if there are fewer than n players on the leaderboard.
+
+Suggestion
+----------
+Use a standard set to store the Player objects and keep them ordered by score.
+When you define the custom comparison function or operator, consider
+how ties in scores are solved.
+For example, players with the same score can be ordered by the lexicographical
+order of their names.
+
+
+
+Exercise 3
+Social network manipulation
+---------------------------
+
+A social network (i.e., an undirected graph) is stored in a file with the following format.
+Each line of the file indicates a friendship relationship (i.e., an edge of the graph) as
+
+sX_nX sY_nY
+
+This line indicates that the individual sX_nX (surname X name X) is a friend of sY_nY
+(surname Y name Y) and vice-versa.
+
+Write a C++ program that:
+
+- Reads the social network from the file and stores it in a proper data structure
+  (i.e., an adjacency list).
+
+- Displays the list of all enrolled individuals in the social network in lexicographical
+  order.
+
+- Given an individual's name, displays all his/her friends in lexicographic order.
+
+- Given two individuals X and Y, displays whether they are related in the social network,
+  i.e., a list of individual friends that lead X to Y.
+  For example, if A has B as a friend, B has C as a friend, and C has D as a friend,
+  then A and D are related in the social network.
+
+Suggestions
+-----------
+Implement the adjacency list using a map (of graph vertices) of sets (of adjacency nodes).
+Use a standard visit (either a DFS, Depth-First Search, or a BFS, Breadt-First Search)
+to discover relationships between two individuals.
