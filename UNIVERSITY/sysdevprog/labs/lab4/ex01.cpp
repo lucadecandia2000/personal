@@ -17,11 +17,11 @@ struct thread_data{
 using namespace std ; 
 
 void * t_f( thread_data *data) {
-    ifstream fileInput(data->fileName);
+    ifstream fileInput(data->fileName, ios::binary);
 
     if(!fileInput.is_open()){
     cout << "Error opening file: " << data->fileName << endl;
-    return NULL ;
+    exit(0);
     }
 
     fileInput >> data->size ;
@@ -66,7 +66,7 @@ for ( int i = 1 ; i < argc -1 ; i++ ){
  int *final = (int *) malloc(finalSum * sizeof(int)) ; 
 
  for (int i = 1 ; i< argc ; i++) {
-    copy (final, final + t_data[i].size, t_data[i].output) ; 
+    copy (final, final + t_data[i].size, t_data[i].output) ; // not the expected behaviour 
  }
 
  sort(final, final+finalSum) ; 
