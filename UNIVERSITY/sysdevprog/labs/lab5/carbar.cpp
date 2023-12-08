@@ -28,7 +28,7 @@ void * increment(mutex &m , int &time, int &occupied, mt19937 &mt) {
             stop = true ; 
         }
 
-    }while(!false);
+    }while(!stop);
     
 }
 
